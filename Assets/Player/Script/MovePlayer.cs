@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using Zenject;
 
 public class MovePlayer : MonoBehaviour
 {
-    public UserInput userInput;
-    private InputData inputData;
-    private MoveData moveData;
-    public float Speed = 1f;
+    [Inject] private IUserInput userInput;//получим данные в структуре
 
+    //
+    public MoveSettings moveSettings;
     //
     private Quaternion originRotation;
     private float2 angle;
@@ -19,19 +19,20 @@ public class MovePlayer : MonoBehaviour
 
     void Start()
     {
-        originRotation = transform.rotation;
 
-        inputData = new InputData();
+        originRotation = transform.rotation;
     }
 
     //мыш
 
     void Update()
     {
-        inputData.Move = userInput.moveInput;
-        inputData.Mouse = userInput.mouseInput;
+        //inputData = userInput.InputData;
+        //Debug.Log(userInput.InputData);
+        //inputData.Move = userInput.moveInput;
+        //inputData.Mouse = userInput.mouseInput;
 
-        angle += inputData.Mouse * mouseSens;
+        angle += userInput.InputData.Mouse * mouseSens;
         angle.y = Math.Clamp(angle.y, -60, 60);
 
         Quaternion rotationY = Quaternion.AngleAxis(angle.x, Vector3.up);
@@ -40,26 +41,26 @@ public class MovePlayer : MonoBehaviour
         transform.rotation = originRotation * rotationY * rotationX;
 
 
-        if (inputData.Move.y > 0)
+        if (userInput.InputData.Move.y > 0)
         {
             Vector3 currentPosition = transform.position;
             currentPosition += transform.forward / stopFactor;
             transform.position = currentPosition;
         }
-        if (inputData.Move.y < 0)
+        if (userInput.InputData.Move.y < 0)
         {
             Vector3 currentPosition = transform.position;
             currentPosition -= transform.forward / stopFactor;
             transform.position = currentPosition;
         }
 
-        if (inputData.Move.x > 0)
+        if (userInput.InputData.Move.x > 0)
         {
             Vector3 currentPosition = transform.position;
             currentPosition += transform.right / stopFactor;
             transform.position = currentPosition;
         }
-        if (inputData.Move.x < 0)
+        if (userInput.InputData.Move.x < 0)
         {
             Vector3 currentPosition = transform.position;
             currentPosition -= transform.right / stopFactor;
@@ -107,16 +108,6 @@ public class MovePlayer : MonoBehaviour
 }
 
 
-//srukture
-public struct InputData
-{
-    public float2 Move;
-    public float2 Mouse;
-
-    public float Shoot;
-    public float Pull;
-    public float Mode;
-}
 
 public struct MoveData
 {
