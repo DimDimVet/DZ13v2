@@ -29,6 +29,18 @@ public class UserInput : MonoBehaviour
             inputAction.Map.Look.performed += context => { inputData.Mouse = context.ReadValue<Vector2>(); };
             inputAction.Map.Look.started += context => { inputData.Mouse = context.ReadValue<Vector2>(); };
             inputAction.Map.Look.canceled += context => { inputData.Mouse = context.ReadValue<Vector2>(); };
+
+            inputAction.Map.Shoot.performed += context => { inputData.Shoot = context.ReadValue<float>(); };
+            inputAction.Map.Shoot.started += context => { inputData.Shoot = context.ReadValue<float>(); };
+            inputAction.Map.Shoot.canceled += context => { inputData.Shoot = context.ReadValue<float>(); };
+
+            inputAction.Map.Pull.performed += context => { inputData.Pull = context.ReadValue<float>(); };
+            inputAction.Map.Pull.started += context => { inputData.Pull = context.ReadValue<float>(); };
+            inputAction.Map.Pull.canceled += context => { inputData.Pull = context.ReadValue<float>(); };
+
+            inputAction.Map.ModePlayer.performed += context => { inputData.Mode = context.ReadValue<float>(); };
+            inputAction.Map.ModePlayer.started += context => { inputData.Mode = context.ReadValue<float>(); };
+            inputAction.Map.ModePlayer.canceled += context => { inputData.Mode = context.ReadValue<float>(); };
             //запустим 
             inputAction.Enable();
         }
@@ -46,7 +58,10 @@ public class UserInput : MonoBehaviour
         if (DebugLogOnOff)
         {
             Debug.Log($"Движение Х = {userInput.InputData.Move.x}, Движение Y = {userInput.InputData.Move.y}");
-            Debug.Log($"Мыш Х = {userInput.InputData.Mouse.x}, Мыш Y = {userInput.InputData.Mouse.y}");
+            Debug.Log($"Мышь Х = {userInput.InputData.Mouse.x}, Мышь Y = {userInput.InputData.Mouse.y}");
+            Debug.Log($"Выстрел = {userInput.InputData.Shoot}");
+            Debug.Log($"Толчек = {userInput.InputData.Pull}");
+            Debug.Log($"Режим = {userInput.InputData.Mode}");
         }
     }
 }

@@ -9,16 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bb588ceeb848b459a03531f768969d, type: 3}
-  m_Name: Player
+  m_Script: {fileID: 11500000, guid: 964a34eb7e8b1024d8a84d1fab6197c1, type: 3}
+  m_Name: Anim
   m_EditorClassIdentifier: 
-  MouseSensor: 0.5
-  SpeedMove: 100
-  MinStopAngle: -30
-  MaxStopAngle: 30
-  Force: 25
-  Height: 12
-  GroundLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  ShootDelay: 1
+  Speed: 2
+  AnimSpeed: SpeedPlayer
+  AnimJamp: JampPlayer
+  AnimDead: Dead

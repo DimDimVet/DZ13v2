@@ -3,8 +3,19 @@ using UnityEngine;
 [CreateAssetMenu]
 public class MoveSettings : ScriptableObject
 {
-    public float MouseSensor = 1f;
-    public float SpeedMove = 1f;
-    public float minStopAngle = -90f;
-    public float maxStopAngle = 90f;
+    [Header("Параметры движения")]
+    public float MouseSensor = 0.5f;
+    public float SpeedMove = 100f;
+    public float MinStopAngle = -30f;
+    public float MaxStopAngle = 30f;
+
+    [Header("Параметры прыжка")]
+    public float Force = 1f;
+    public float Height = 1f;
+
+    [Header("Указать слой GND")]
+    public LayerMask GroundLayer;
+
+    [Header("Задержка нажатия")]
+    public float ShootDelay=1f;
 }
