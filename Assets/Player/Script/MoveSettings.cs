@@ -4,10 +4,9 @@ using UnityEngine;
 public class MoveSettings : ScriptableObject
 {
     [Header("Параметры движения")]
-    public float MouseSensor = 0.5f;
     public float SpeedMove = 100f;
-    public float MinStopAngle = -30f;
-    public float MaxStopAngle = 30f;
+    public float SpeedAngle=10f;
+    public float CorrectY=0f;
 
     [Header("Параметры прыжка")]
     public float Force = 1f;
