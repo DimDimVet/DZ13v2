@@ -26,7 +26,7 @@ public class PullPlayer : MonoBehaviour
 
     void Update()
     {
-        if (userInput.InputData.Pull != 0)
+        if (userInput.InputData.Pull != 0)//получим нажатие
         {
             Jamp();
         }
