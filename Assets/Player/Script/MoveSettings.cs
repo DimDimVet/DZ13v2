@@ -5,8 +5,6 @@ public class MoveSettings : ScriptableObject
 {
     [Header("Параметры движения")]
     public float SpeedMove = 100f;
-    public float SpeedAngle=10f;
-    public float CorrectY=0f;
 
     [Header("Параметры прыжка")]
     public float Force = 1f;

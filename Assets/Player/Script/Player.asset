@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bb588ceeb848b459a03531f768969d, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  MouseSensor: 0.5
-  SpeedMove: 70
-  MinStopAngle: 0
-  MaxStopAngle: 0
+  SpeedMove: 30
   Force: 25
   Height: 12
   GroundLayer:

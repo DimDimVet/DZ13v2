@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fce5a63e9fb93f42b31fecee0a13d78, type: 3}
   m_Name: Camera
   m_EditorClassIdentifier: 
-  MouseSensor: 0.5
+  MouseSensor: 5
   MinStopAngle: -10
   MaxStopAngle: 10
-  Offset: {x: 0.5, y: 0.5, z: 0.5}

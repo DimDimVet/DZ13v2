@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Bull : MonoBehaviour
 {
+    [Inject] private IRegistrator dataReg;//получим данные управления в структуре
     public BullSettings BullSettings;
 
     [SerializeField] private GameObject decalGO;
@@ -27,7 +29,12 @@ public class Bull : MonoBehaviour
         GameObject decal;
         if (Physics.Linecast(startPos, transform.position, out hit))
         {
-                collaiderBullet.enabled = false;
+
+            RegistratorConstruction rezult =dataReg.GetData(hit.collider.gameObject.GetHashCode());
+
+            Debug.Log(rezult.HealtObj.dataTest);
+
+            collaiderBullet.enabled = false;
                 decal = Instantiate(decalGO);
                 decal.transform.position = hit.point + hit.normal * 0.001f;
                 decal.transform.rotation = Quaternion.LookRotation(-hit.normal);
