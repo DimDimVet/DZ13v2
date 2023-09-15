@@ -48,4 +48,9 @@ public class Bull : MonoBehaviour
         }
         startPos = transform.position;
     }
+
+    public class FabricBull : PlaceholderFactory<IRegistrator>
+    {
+        
+    }
 }

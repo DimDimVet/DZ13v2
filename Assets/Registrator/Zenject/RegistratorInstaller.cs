@@ -1,3 +1,4 @@
+using UnityEngine;
 using Zenject;
 
 public class RegistratorInstaller : MonoInstaller
@@ -5,5 +6,7 @@ public class RegistratorInstaller : MonoInstaller
     public override void InstallBindings()
     {
         Container.Bind<IRegistrator>().To<RegistratorExecutor>().AsSingle().NonLazy();//инициализируем точку входа исполнителя ExecutorZenject
+
+        //Container.BindFactory<>();
     }
 }
