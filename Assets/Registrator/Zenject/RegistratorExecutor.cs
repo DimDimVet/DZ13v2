@@ -1,7 +1,10 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class RegistratorExecutor : IRegistrator
 {
+    public Transform OutPos { get; set; }
+
     private List<RegistratorConstruction> dataObject=new List<RegistratorConstruction>();
 
     public void SetData(RegistratorConstruction data)

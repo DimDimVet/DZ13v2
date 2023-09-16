@@ -5,21 +5,27 @@ using Zenject;
 
 public class Bull : MonoBehaviour
 {
-    //[Inject] private IRegistrator dataReg;//получим данные управления в структуре
+    [Inject] private IRegistrator dataReg;//получим данные управления в структуре
     public BullSettings BullSettings;
 
     [SerializeField] private GameObject decalGO;
-
     private int damage;
     private int speed;
     private Collider collaiderBullet;
     private Vector3 startPos;
+    private int hashCod;
+
     private void Start()
     {
-        damage=BullSettings.Damage;
-        speed=BullSettings.Speed;
-        collaiderBullet =gameObject.GetComponent<Collider>();
+        damage = BullSettings.Damage;
+        speed = BullSettings.Speed;
+        collaiderBullet = gameObject.GetComponent<Collider>();
+
+        transform.rotation = dataReg.OutPos.rotation;
+        transform.position = dataReg.OutPos.position;
         startPos = transform.position;
+        hashCod = gameObject.GetHashCode();
+
     }
 
     private void Update()
@@ -29,19 +35,20 @@ public class Bull : MonoBehaviour
         GameObject decal;
         if (Physics.Linecast(startPos, transform.position, out hit))
         {
-            //плохо
-            if (ControlHealt(hit))
+            if (hashCod == hit.collider.gameObject.GetHashCode())
             {
-                Debug.Log("Yjhv");
+                return;
             }
+                Debug.Log(hit.collider.gameObject.name);
+            
 
             collaiderBullet.enabled = false;
-                decal = Instantiate(decalGO);
-                decal.transform.position = hit.point + hit.normal * 0.001f;
-                decal.transform.rotation = Quaternion.LookRotation(-hit.normal);
-                Destroy(decal, 1);
+            decal = Instantiate(decalGO);
+            decal.transform.position = hit.point + hit.normal * 0.001f;
+            decal.transform.rotation = Quaternion.LookRotation(-hit.normal);
+            Destroy(decal, 1);
 
-                Destroy(gameObject);
+            Destroy(gameObject);
         }
         else
         {
@@ -50,16 +57,7 @@ public class Bull : MonoBehaviour
         startPos = transform.position;
     }
 
-    private bool ControlHealt(RaycastHit hit)
+    public class Factory : PlaceholderFactory<Bull>
     {
-        var tempData = hit.collider.gameObject.GetComponent<Healt>();
-        if (tempData != null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 }

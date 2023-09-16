@@ -5,10 +5,12 @@ using Zenject;
 public class ShootPlayer : MonoBehaviour
 {
     [Inject] private IUserInput userInput;//получим данные в структуре
+    [Inject] private Bull.Factory bullFactory;//подключим фабрику Bull
+    [Inject] private IRegistrator dataReg;
     //
     public ActionSettings ActionSettings;
     //
-    [SerializeField] private GameObject bullet;
+    //[SerializeField] private GameObject bullet;
     [SerializeField] private Transform outBullet;
 
     [SerializeField] private ParticleSystem gunExitParticle;//система частиц
@@ -20,7 +22,8 @@ public class ShootPlayer : MonoBehaviour
 
     private void Start()
     {
-        shootDelay=ActionSettings.ShootDelay;
+        dataReg.OutPos = outBullet;
+        shootDelay =ActionSettings.ShootDelay;
         StartCoroutine(Example());
     }
 
@@ -52,7 +55,8 @@ public class ShootPlayer : MonoBehaviour
             shootTime = Time.time;
         }
 
-        Instantiate(bullet, outBullet.position, outBullet.rotation);
+        bullFactory.Create();
+        //Instantiate(bullet, outBullet.position, outBullet.rotation);
         gunExitParticle.Play();
 
     }
