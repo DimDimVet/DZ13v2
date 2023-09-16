@@ -5,7 +5,7 @@ using Zenject;
 
 public class Bull : MonoBehaviour
 {
-    [Inject] private IRegistrator dataReg;//получим данные управления в структуре
+    //[Inject] private IRegistrator dataReg;//получим данные управления в структуре
     public BullSettings BullSettings;
 
     [SerializeField] private GameObject decalGO;
@@ -29,10 +29,11 @@ public class Bull : MonoBehaviour
         GameObject decal;
         if (Physics.Linecast(startPos, transform.position, out hit))
         {
-
-            RegistratorConstruction rezult =dataReg.GetData(hit.collider.gameObject.GetHashCode());
-
-            Debug.Log(rezult.HealtObj.dataTest);
+            //плохо
+            if (ControlHealt(hit))
+            {
+                Debug.Log("Yjhv");
+            }
 
             collaiderBullet.enabled = false;
                 decal = Instantiate(decalGO);
@@ -49,8 +50,16 @@ public class Bull : MonoBehaviour
         startPos = transform.position;
     }
 
-    public class FabricBull : PlaceholderFactory<IRegistrator>
+    private bool ControlHealt(RaycastHit hit)
     {
-        
+        var tempData = hit.collider.gameObject.GetComponent<Healt>();
+        if (tempData != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
