@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using UnityEngine;
 using Zenject;
@@ -23,6 +24,11 @@ public class ShootPlayer : MonoBehaviour
 
     private void Start()
     {
+        //if (PhotonView.Get(this.gameObject).IsMine)//проверим через фотон, текущий ли объект при передачи управления
+        //{
+        //    entityManager.AddComponentData(entity, new InputData());//добавим в сущность стурктуру ввода
+        //}
+
         dataReg.OutPos = outBullet;
         shootDelay =ActionSettings.ShootDelay;
         StartCoroutine(Example());
