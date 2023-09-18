@@ -24,7 +24,7 @@ public class Bull : MonoBehaviour
         transform.rotation = dataReg.OutPos.rotation;
         transform.position = dataReg.OutPos.position;
         startPos = transform.position;
-        hashCod = gameObject.GetHashCode();
+        //hashCod = gameObject.GetHashCode();
 
     }
 
@@ -35,12 +35,7 @@ public class Bull : MonoBehaviour
         GameObject decal;
         if (Physics.Linecast(startPos, transform.position, out hit))
         {
-            if (hashCod == hit.collider.gameObject.GetHashCode())
-            {
-                return;
-            }
-                Debug.Log(hit.collider.gameObject.name);
-            
+            ExecutorCollision(hit);
 
             collaiderBullet.enabled = false;
             decal = Instantiate(decalGO);
@@ -55,6 +50,28 @@ public class Bull : MonoBehaviour
             Destroy(gameObject, 5);
         }
         startPos = transform.position;
+    }
+
+    private void ExecutorCollision(RaycastHit hit)
+    {
+        int tempHsh = hit.collider.gameObject.GetHashCode();
+        RegistratorConstruction tempList = dataReg.GetData(tempHsh);
+        //Healt
+        if (tempList.Hash==tempHsh)
+        {
+            if (tempList.HealtObj!=null)
+            {
+                tempList.HealtObj.Damage=damage;
+            }
+            if (tempList.PlayerHealt!=null)
+            {
+                tempList.PlayerHealt.Damage=damage;
+            }
+        }
+        else
+        {
+            Debug.Log("No Script");
+        }
     }
 
     public class Factory : PlaceholderFactory<Bull>

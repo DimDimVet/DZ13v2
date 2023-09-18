@@ -10,6 +10,7 @@ public class ShootPlayer : MonoBehaviour
     //
     public ActionSettings ActionSettings;
     //
+    [HideInInspector] public int CountBull;
     //[SerializeField] private GameObject bullet;
     [SerializeField] private Transform outBullet;
 
@@ -56,6 +57,7 @@ public class ShootPlayer : MonoBehaviour
         }
 
         bullFactory.Create();
+        CountBull++;
         //Instantiate(bullet, outBullet.position, outBullet.rotation);
         gunExitParticle.Play();
 

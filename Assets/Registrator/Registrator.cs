@@ -1,17 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 public class Registrator : MonoBehaviour
 {
     [Inject] private IRegistrator dataReg;//получим данные управления в структуре
-    void Start()
+    private void Awake()
     {
         RegistratorConstruction registrator = new RegistratorConstruction
         {
             Hash=gameObject.GetHashCode(),
-            HealtObj=GetComponent<Healt>()
+            HealtObj=GetComponent<Healt>(),
+            PlayerHealt=GetComponent<PlayerHealt>(),
+            ShootPlayer=GetComponent<ShootPlayer>()
         };
 
         dataReg.SetData(registrator);

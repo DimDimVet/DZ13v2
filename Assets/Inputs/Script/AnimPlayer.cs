@@ -5,7 +5,10 @@ using Zenject;
 public class AnimPlayer : MonoBehaviour
 {
     [Inject] private IUserInput userInput;//получим данные в структуре
+    [Inject] private IRegistrator dataReg;//получим данные управления в структуре
 
+    private int hashGO;
+    private RegistratorConstruction dataList;
     //anim
     private float speed;
     private string animSpeed;
@@ -20,7 +23,9 @@ public class AnimPlayer : MonoBehaviour
 
     void Start()
     {
-        animator=gameObject.GetComponent<Animator>();
+        hashGO=gameObject.GetHashCode();
+
+        animator =gameObject.GetComponent<Animator>();
 
         speed = AnimSettings.Speed;
         animSpeed = AnimSettings.AnimSpeed;
@@ -28,6 +33,21 @@ public class AnimPlayer : MonoBehaviour
         animDead = AnimSettings.AnimDead;
     }
 
+    private bool ControlGO(int hashGO)
+    {
+        if (dataList.Hash==hashGO)//доп проверка
+        {
+            if (dataList.HealtObj!=null)
+            {
+                return dataList.HealtObj.Dead;
+            }
+            if (dataList.PlayerHealt!=null)
+            {
+                return dataList.PlayerHealt.Dead;
+            }
+        }
+        return false;
+    }
     void Update()
     {
         if (animator != null)
@@ -56,10 +76,10 @@ public class AnimPlayer : MonoBehaviour
             }
 
             ////dead
-            //if (healt.Dead)
-            //{
-            //    animator.SetBool(AnimDead, true);
-            //}
+            if (ControlGO(hashGO))
+            {
+                animator.SetBool(animDead, true);
+            }
         }
         else
         {

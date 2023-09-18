@@ -11,11 +11,8 @@ GameObject:
   - component: {fileID: 4460224299614513086}
   - component: {fileID: 4460224299614513073}
   - component: {fileID: 4460224299614513072}
+  - component: {fileID: 3252298274798869690}
   - component: {fileID: 4460224299614513075}
-  - component: {fileID: 4460224299614513074}
-  - component: {fileID: 4460224299614513077}
-  - component: {fileID: 4460224299614513076}
-  - component: {fileID: -5672835369068146728}
   m_Layer: 0
   m_Name: PickUpItem
   m_TagString: Untagged
@@ -88,6 +85,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3252298274798869690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4460224299614513079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2630fc04875d2c4bb04facaa85ca1f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PickSettings: {fileID: 0}
+  objectImg: {fileID: 0}
+  objectGrid: {fileID: 0}
 --- !u!135 &4460224299614513075
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -101,66 +113,3 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.0012010591
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4460224299614513074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4460224299614513079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConversionMode: 1
---- !u!114 &4460224299614513077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4460224299614513079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e806008021dcc114d8e62e5d408e759f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Collider: {fileID: 4460224299614513075}
-  CollisionAction:
-  - {fileID: 4460224299614513076}
---- !u!114 &4460224299614513076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4460224299614513079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df40fb060d707c7478cc7111cf7097b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ItemUI: {fileID: 703325033036780192, guid: 9fcd497c3bb6c6a489bc545da0a86d63, type: 3}
---- !u!114 &-5672835369068146728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4460224299614513079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
